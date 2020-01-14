@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use Validator;
-use App\Http\Validators\HelloValidator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Validator;
+use App\Http\Validators\HelloValidator;
 
 class HelloServiceProvider extends ServiceProvider
 {
