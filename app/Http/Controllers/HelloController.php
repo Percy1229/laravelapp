@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 class HelloController extends Controller
 {
   public function index(Request $request) {
-    $items = DB::select('select * from people');
+    $items = DB::table('people')->orderBy('age', 'desc')->get();
     return view('hello.index', ['items' => $items]);
 }
 
@@ -60,5 +60,14 @@ public function remove(Request $request){
   $param = ['id' => $request->id];
   DB::delete('delete from people where id = :id', $param);
   return redirect('/hello');
+}
+
+public function show(Request $request){
+  $page = $request->page;
+  $items = DB::table('people')
+  ->offset($page * 3)
+  ->limit(3)
+  ->get();
+  return view('hello.show', ['items' => $items]);
 }
 }
